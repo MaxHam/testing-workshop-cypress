@@ -16,5 +16,6 @@
   "env": {},
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "experimentalStudio": true,
-  "screenshotsFolder": "cypress/screenshots"
+  "screenshotsFolder": "cypress/screenshots",
+  "videoFolder": "cypress/videos"
 }
