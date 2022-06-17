@@ -1,23 +1,33 @@
 /// <reference types="cypress" />
+
+/**
+ * Fügt ein Todo Item hinzu
+ * @param {string} text
+ */
+const addItem = (text) => {
+  cy.get('.new-todo').type(`${text}{enter}`)
+}
+
 beforeEach(() => {
   cy.visit('/')
 })
 it('loads', () => {
   cy.contains('h1', 'todos')
 })
-// optional test data attribute selector helper
-const tid = (id) => `[data-cy="${id}"]`
-/**
- * Adds a todo item
- * @param {string} text
- */
-const addItem = (text) => {
-  cy.get('[data-cy="input"]').type(`${text}{enter}`)
-}
 
-// to enable this test need to add appropriate "data-cy" attributes
-it.skip('adds two items', () => {
-  addItem('first item')
-  addItem('second item')
-  cy.get(tid('item')).should('have.length', 2)
+it('can delete an item', () => {
+  // Füge zwei Items hinzu
+  addItem('simple')
+  addItem('hard')
+  // Lösche das erste Item
+  cy.contains('li.todo', 'simple')
+    .should('exist')
+    .find('.destroy')
+    // Nutze {force: true}
+    .click({ force: true })
+
+  // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
+  cy.contains('li.todo', 'simple').should('not.exist')
+  // Überprüfe ob das andere Item noch existiert
+  cy.contains('li.todo', 'hard').should('exist')
 })

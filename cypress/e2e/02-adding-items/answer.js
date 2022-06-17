@@ -19,38 +19,21 @@ it('adds two items', () => {
 })
 
 it('can mark an item as completed', () => {
-  // adds a few items
+  // Erstelle zwei Items
   addItem('simple')
   addItem('hard')
 
-  // marks the first item as completed
+  // Markiere das erste Item als erledigt
   cy.contains('li.todo', 'simple').should('exist').find('.toggle').check()
 
-  // confirms the first item has the expected completed class
+  // Überprüfe ob das erste Item abgehakt wurde (class =  completed)
   cy.contains('li.todo', 'simple').should('have.class', 'completed')
-  // confirms the other items are still incomplete
+  // Überprüfe, dass die anderen Items noch nicht abgehakt wurden
   cy.contains('li.todo', 'hard').should('not.have.class', 'completed')
 })
 
-it('can delete an item', () => {
-  // adds a few items
-  addItem('simple')
-  addItem('hard')
-  // deletes the first item
-  cy.contains('li.todo', 'simple')
-    .should('exist')
-    .find('.destroy')
-    // use force: true because we don't wsnt to hover
-    .click({ force: true })
-
-  // confirm the deleted item is gone from the dom
-  cy.contains('li.todo', 'simple').should('not.exist')
-  // confirm the other item still exists
-  cy.contains('li.todo', 'hard').should('exist')
-})
-
 /**
- * Adds a todo item
+ * Fügt ein Todo Item hinzu
  * @param {string} text
  */
 const addItem = (text) => {
@@ -58,41 +41,10 @@ const addItem = (text) => {
 }
 
 it('can add many items', () => {
-  // assumes there are no items at the beginning
-
   const N = 5
   for (let k = 0; k < N; k += 1) {
     addItem(`item ${k}`)
   }
-  // check number of items
+  // Überprüfe die Anzahl an hinzugefügten Items
   cy.get('li.todo').should('have.length', 5)
 })
-
-it('adds item with random text', () => {
-  const randomLabel = `Item ${Math.random().toString().slice(2, 14)}`
-
-  addItem(randomLabel)
-  cy.contains('li.todo', randomLabel)
-    .should('be.visible')
-    .and('not.have.class', 'completed')
-})
-
-it('starts with zero items', () => {
-  cy.get('li.todo').should('have.length', 0)
-})
-
-it('does not allow adding blank todos', () => {
-  cy.on('uncaught:exception', (e) => {
-    // what will happen if this assertion fails?
-    // will the test fail?
-    // expect(e.message).to.include('Cannot add a blank todo')
-    // return false
-
-    // a better shortcut
-    return !e.message.includes('Cannot add a blank todo')
-  })
-  addItem(' ')
-})
-
-// what a challenge?
-// test more UI at http://todomvc.com/examples/vue/
