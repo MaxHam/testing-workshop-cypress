@@ -7,62 +7,57 @@
 
 it('starts with zero items (waits)', () => {
   cy.visit('/')
-  /* eslint-disable-next-line cypress/no-unnecessary-waiting */
+  // Warte 1 Sekunde
+  // Dann überprüfe die Anzahl an Todo Items
   cy.wait(1000)
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('starts with zero items', () => {
-  // start Cypress network server
-  // spy on route `GET /todos`
-  // THEN visit the page
+  // Spionier die Route `GET /todos` aus
+  // mit cy.intercept(...).as(<alias name>)
+  // Dann besuche die Seite
   cy.intercept('GET', '/todos').as('todos')
   cy.visit('/')
-  cy.wait('@todos') // wait for `GET /todos` response
-    // inspect the server's response
-    .its('response.body')
-    .should('have.length', 0)
-  // then check the DOM
-  // note that we don't have to use "cy.wait(...).then(...)"
-  // because all Cypress commands are flattened into a single chain
-  // automatically. Thus just write "cy.wait(); cy.get();" naturally
+  // Warte auf `GET /todos` Route
+  // mit "@<alias name>" string
+  // Dann überprüfe die DOM
+  cy.wait('@todos') 
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('starts with zero items (stubbed response)', () => {
-  // start Cypress network server
-  // spy on route `GET /todos`
-  // THEN visit the page
+  // Stub `GET /todos` mit einem leeren Array([])
+  // Speichere den Stub als Alias
+  // Dann besuche die Website
   cy.intercept('GET', '/todos', []).as('todos')
   cy.visit('/')
-  cy.wait('@todos') // wait for `GET /todos` response
-    // inspect the server's response
-    .its('response.body')
-    .should('have.length', 0)
-  // then check the DOM
+  // Warte auf den Route Alias
+  // Dann überprüfe die DOM
+  cy.wait('@todos')
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('starts with zero items (fixture)', () => {
-  // stub route `GET /todos`, return data from fixture file
-  // THEN visit the page
+  // Stub `GET /todos` mit der Fixture "empty-list"
+  // Dann besuche die Seite
   cy.intercept('GET', '/todos', { fixture: 'empty-list.json' }).as('todos')
   cy.visit('/')
-  cy.wait('@todos') // wait for `GET /todos` response
-    // inspect the server's response
+  // Warte auf den Route Alias
+  // Dann überprüfe die DOM
+  cy.wait('@todos') 
     .its('response.body')
     .should('have.length', 0)
-  // then check the DOM
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('loads several items from a fixture', () => {
-  // stub route `GET /todos` with data from a fixture file
-  // THEN visit the page
+  // Stub `GET /todos` mit der Fixture "two-items"
+  // Dann besuche die Seite
   cy.intercept('GET', '/todos', { fixture: 'two-items' })
   cy.visit('/')
-  // then check the DOM: some items should be marked completed
-  // we can do this in a variety of ways
+  // Dann überprüfe die DOM: ein paar Todo Items sollten abgehakt sein
+
   cy.get('li.todo').should('have.length', 2)
   cy.get('li.todo.completed').should('have.length', 1)
   cy.contains('.todo', 'first item from fixture')
@@ -75,8 +70,8 @@ it('loads several items from a fixture', () => {
 })
 
 it('shows loading element', () => {
-  // delay XHR to "/todos" by a few seconds
-  // and respond with an empty list
+  // Verzögere den XHR Request auf "/todos" um 2 Sekunden
+  // und sende als Response ein leeres Array
   cy.intercept(
     {
       method: 'GET',
@@ -89,13 +84,13 @@ it('shows loading element', () => {
   ).as('loading')
   cy.visit('/')
 
-  // shows Loading element
+  // Überprüfe ob eine Lade Element angezeigt wird
+  // Warte bis der XHR Request fertig ist
+  // Überprüfe ob das Lade Element nicht mehr angezeigt wird
   cy.get('.loading').should('be.visible')
 
-  // wait for the network call to complete
   cy.wait('@loading')
 
-  // now the Loading element should go away
   cy.get('.loading').should('not.be.visible')
 })
 

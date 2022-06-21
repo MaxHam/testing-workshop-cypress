@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 //
+// Vor den folgenden Tests werden wir die Daten nicht zzurücksetzen, um zu überprüfen, dass die Tests fehlschlagen. 
+// Wenn du keine Todo Items hast, füge welche vor dem Ausführen der Tests hinzu.
 // note, we are not resetting the server before each test
 // and we want to confirm that IF the application has items already
 // (for example add them manually using the browser localhost:3000)
@@ -11,64 +13,60 @@
 
 it('starts with zero items (waits)', () => {
   cy.visit('/')
-  // wait 1 second
-  // then check the number of items
+  // Warte 1 Sekunde
+  // Dann überprüfe die Anzahl an Todo Items
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('starts with zero items', () => {
-  // start Cypress network proxy with cy.server()
-  // spy on route `GET /todos`
-  //  with cy.intercept(...).as(<alias name>)
-  // THEN visit the page
+  // Spionier die Route `GET /todos` aus
+  // mit cy.intercept(...).as(<alias name>)
+  // Dann besuche die Seite
   cy.visit('/')
-  // wait for `GET /todos` route
-  //  using "@<alias name>" string
-  // then check the DOM
+  // Warte auf `GET /todos` Route
+  // mit "@<alias name>" string
+  // Dann überprüfe die DOM
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('starts with zero items (stubbed response)', () => {
-  // start Cypress network server
-  // stub `GET /todos` with []
-  // save the stub as an alias
-  // THEN visit the page
+  // Stub `GET /todos` mit einem leeren Array([])
+  // Speichere den Stub als Alias
+  // Dann besuche die Website
   cy.visit('/')
 
-  // wait for the route alias
-  // grab its response body
-  // and make sure the body is an empty list
+  // Warte auf den Route Alias
+  // Dann überprüfe die DOM
   cy.get('li.todo').should('have.length', 0)
 })
 
 it('starts with zero items (fixture)', () => {
-  // start Cypress network server
-  // stub `GET /todos` with fixture "empty-list"
-  // visit the page
+  // Stub `GET /todos` mit der Fixture "empty-list"
+  // Dann besuche die Seite
   cy.visit('/')
   
 
-  // then check the DOM
+  // Warte auf den Route Alias
+  // Dann überprüfe die DOM
   cy.get('li.todo').should('have.length', 0)
 
 })
 
 it('loads several items from a fixture', () => {
-  // stub route `GET /todos` with data from a fixture file "two-items"
-  // THEN visit the page
+  // Stub `GET /todos` mit der Fixture "two-items"
+  // Dann besuche die Seite
   cy.visit('/')
   
-  // then check the DOM: some items should be marked completed
-  // we can do this in a variety of ways
+  // Dann überprüfe die DOM: ein paar Todo Items sollten abgehakt sein
 })
 
 
 it('shows loading element', () => {
-  // delay XHR to "/todos" by a few seconds
-  // and respond with an empty list
+  // Verzögere den XHR Request auf "/todos" um 2 Sekunden
+  // und sende als Response ein leeres Array
   cy.visit('/')
 
-  // shows Loading element
-  // wait for the network call to complete
-  // now the Loading element should go away
+  // Überprüfe ob eine Lade Element angezeigt wird
+  // Warte bis der XHR Request fertig ist
+  // Überprüfe ob das Lade Element nicht mehr angezeigt wird
 })
