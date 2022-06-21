@@ -7,26 +7,10 @@ const addItem = (text) => {
   cy.get('.new-todo').type(`${text}{enter}`)
 }
 
-describe('reset data using XHR call', () => {
-  beforeEach(() => {
-    // application should be running at port 3000
-    // and the "localhost:3000" is set as "baseUrl" in "cypress.json"
-    // TODO call /reset endpoint with POST method and object {todos: []}
-    cy.visit('/')
-  })
-
-  it('adds two items', () => {
-    addItem('first item')
-    addItem('second item')
-    cy.get('li.todo').should('have.length', 2)
-  })
-})
-
 describe('reset data using cy.writeFile', () => {
   beforeEach(() => {
-    // TODO write file "todomvc/data.json" with stringified todos object
-    // file path is relative to the project's root folder
-    // where cypress.json is located
+    // Überschreibe die Datei "todomvc/data.json" mit einem stringified Todos Objekt
+    // Dateipfad ist relativ zum Projekt Rootverzeichnis in welchem cypress.json befindet
     cy.visit('/')
   })
 
@@ -39,7 +23,7 @@ describe('reset data using cy.writeFile', () => {
 
 describe('reset data using a task', () => {
   beforeEach(() => {
-    // TODO call a task to reset data
+    // Nutze cy.task um die Daten zurückzusetzen
     cy.visit('/')
   })
 
@@ -52,15 +36,15 @@ describe('reset data using a task', () => {
 
 describe('set initial data', () => {
   it('sets data to complex object right away', () => {
-    // TODO call task and pass an object with todos
+    // Nutze cy.task um die Todo Daten als ein spezifisches Objekt zu setzen
     cy.visit('/')
-    // check what is rendered
+    // Überprüfe was gerendert wird
   })
 
   it('sets data using fixture', () => {
-    // TODO load todos from "cypress/fixtures/two-items.json"
-    // and then call the task to set todos
+    // Lade Todos von der Fixture "cypress/fixtures/two-items.json"
+    // Nutze cy.task um diese Fixture Daten zu setzen
     cy.visit('/')
-    // check what is rendered
+    // Überprüfe was gerendert wird
   })
 })

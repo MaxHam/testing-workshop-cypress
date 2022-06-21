@@ -7,24 +7,6 @@ const addItem = (text) => {
   cy.get('.new-todo').type(`${text}{enter}`)
 }
 
-describe('reset data using XHR call', () => {
-  // you can use separate "beforeEach" hooks or a single one
-  beforeEach(() => {
-    cy.request('POST', '/reset', {
-      todos: []
-    })
-  })
-  beforeEach(() => {
-    cy.visit('/')
-  })
-
-  it('adds two items', () => {
-    addItem('first item')
-    addItem('second item')
-    cy.get('li.todo').should('have.length', 2)
-  })
-})
-
 describe('reset data using cy.writeFile', () => {
   beforeEach(() => {
     const emptyTodos = {
@@ -71,18 +53,18 @@ describe('set initial data', () => {
     })
 
     cy.visit('/')
-    // check what is rendered
+    // Überprüfe was gerendert wird
     cy.get('li.todo').should('have.length', 1)
   })
 
   it('sets data using fixture', () => {
     cy.fixture('two-items').then((todos) => {
-      // "todos" is an array
+      // "todos" ist ein Array
       cy.task('resetData', { todos })
     })
 
     cy.visit('/')
-    // check what is rendered
+    // Überprüfe was gerendert wird
     cy.get('li.todo').should('have.length', 2)
   })
 })
