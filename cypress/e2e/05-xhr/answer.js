@@ -56,26 +56,6 @@ it('starts with zero items (fixture)', () => {
   cy.get('li.todo').should('have.length', 0)
 })
 
-it('posts new item to the server', () => {
-  cy.intercept('POST', '/todos').as('new-item')
-  cy.visit('/')
-  cy.get('.new-todo').type('test api{enter}')
-  cy.wait('@new-item').its('request.body').should('have.contain', {
-    title: 'test api',
-    completed: false
-  })
-})
-
-it('posts new item to the server response', () => {
-  cy.intercept('POST', '/todos').as('new-item')
-  cy.visit('/')
-  cy.get('.new-todo').type('test api{enter}')
-  cy.wait('@new-item').its('response.body').should('have.contain', {
-    title: 'test api',
-    completed: false
-  })
-})
-
 it('loads several items from a fixture', () => {
   // stub route `GET /todos` with data from a fixture file
   // THEN visit the page
@@ -92,34 +72,6 @@ it('loads several items from a fixture', () => {
   cy.contains('.todo.completed', 'second item from fixture')
     .find('.toggle')
     .should('be.checked')
-})
-
-it('handles 404 when loading todos', () => {
-  // when the app tries to load items
-  // set it up to fail
-  cy.intercept(
-    {
-      method: 'GET',
-      pathname: '/todos'
-    },
-    {
-      body: 'test does not allow it',
-      statusCode: 404,
-      delayMs: 2000
-    }
-  )
-  cy.visit('/', {
-    // spy on console.error because we expect app would
-    // print the error message there
-    onBeforeLoad: (win) => {
-      cy.spy(win.console, 'error').as('console-error')
-    }
-  })
-  // observe external effect from the app - console.error(...)
-  cy.get('@console-error').should(
-    'have.been.calledWithExactly',
-    'test does not allow it'
-  )
 })
 
 it('shows loading element', () => {
@@ -147,20 +99,3 @@ it('shows loading element', () => {
   cy.get('.loading').should('not.be.visible')
 })
 
-it('handles todos with blank title', () => {
-  cy.intercept('GET', '/todos', [
-    {
-      id: '123',
-      title: '  ',
-      completed: false
-    }
-  ])
-
-  cy.visit('/')
-  cy.get('li.todo')
-    .should('have.length', 1)
-    .first()
-    .should('not.have.class', 'completed')
-    .find('label')
-    .should('have.text', '  ')
-})
