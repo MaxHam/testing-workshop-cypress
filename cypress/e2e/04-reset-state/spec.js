@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 /**
- * Adds a todo item
+ * Fügt ein Todo Item hinzu
  * @param {string} text
  */
 const addItem = (text) => {
