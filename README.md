@@ -42,8 +42,16 @@ Wir werden also nicht jeden Aspekt von Cypress erforschen, sondern viel mehr anh
  ```
 - Es sollte sich automatisch der Test Runner von Cypress.io in einem Browserfenster öffnen
 
+## Aufgaben
+Aufgaben sind zu finden in dem Verzeichnis `cypress/e2e`
 
-### Material
+01. [01-basic](cypress/e2e/01-basic)
+02. [02-addind-items](cypress/e2e/02-adding-items)
+03. [03-selector-playground](cypress/e2e/03-selector-playground)
+04. [04-reset-state](cypress/e2e/04-reset-state)
+05. [05-xhr](cypress/e2e/05-xhr)
+
+ ### Material
 - [Workshop Repository](https://github.com/MaxHam/testing-workshop-cypress) (Wird spätestens am Tag des Workshops veröffentlicht)
 - [Cypress.io Dokumentation](https://docs.cypress.io/)
 - [Mocha Testing Library](https://mochajs.org/api/)
