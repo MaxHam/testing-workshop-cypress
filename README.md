@@ -19,11 +19,25 @@ Wir werden also nicht jeden Aspekt von Cypress erforschen, sondern viel mehr anh
 - Node.js/npm installieren.
 - Workshop-Repository clonen.
 - npm-Abhängigkeiten für Cypress Workshop installieren.
-  - Ìm Repository ```bash $npm install``` ausführen
+  - Ìm Repository 
+  ```bash 
+  $ npm install
+  ``` 
+  ausführen
 - npm-Abhängigkeiten für Beispiel Applikation installieren.
-  - Die Abhängigkeiten für die Beispiel Applikation sollten bereits durch obriges Kommando installiert sein, sonst  ```bash $cd todomvc && npm install```
-- Überprüfen ob Beispiel Applikation startet mit ```bash $npm run start``` unter `http://localhost:3000/`
-- Überprüfen ob Cypress startet mi ```bash $npm run cy:open```
+  - Die Abhängigkeiten für die Beispiel Applikation sollten bereits durch obriges Kommando installiert sein, sonst  
+   ```bash
+   $ cd todomvc && npm install
+   ```
+- Überprüfen ob Beispiel Applikation startet mit 
+ ```bash
+ $ npm run start
+ ``` 
+ unter `http://localhost:3000/`
+- Überprüfen ob Cypress startet mi 
+ ```bash 
+ $ npm run cy:open
+ ```
 
 ### Material
 - [Workshop Repository](https://github.com/MaxHam/testing-workshop-cypress) (Wird spätestens am Tag des Workshops veröffentlicht)
