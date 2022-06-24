@@ -19,13 +19,13 @@ Wir werden also nicht jeden Aspekt von Cypress erforschen, sondern viel mehr anh
 - Node.js/npm installieren.
 - Workshop-Repository clonen.
 - npm-Abhängigkeiten für Cypress Workshop installieren.
-  - Ìm Repository ausführen
+  Ìm Repository ausführen
   ```bash 
   $ npm install
   ``` 
 
 - npm-Abhängigkeiten für Beispiel Applikation installieren.
-  - Die Abhängigkeiten für die Beispiel Applikation sollten bereits durch obriges Kommando installiert sein, sonst  
+  Die Abhängigkeiten für die Beispiel Applikation sollten bereits durch obriges Kommando installiert sein, sonst  
    ```bash
    $ cd todomvc && npm install
    ```
