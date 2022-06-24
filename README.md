@@ -19,7 +19,6 @@ Wir werden also nicht jeden Aspekt von Cypress erforschen, sondern viel mehr anh
 - Node.js/npm installieren.
 - Workshop-Repository clonen.
 - npm-Abhängigkeiten für Cypress Workshop installieren.
-  Ìm Repository ausführen
   ```bash 
   $ npm install
   ``` 
@@ -31,15 +30,15 @@ Wir werden also nicht jeden Aspekt von Cypress erforschen, sondern viel mehr anh
    ```
 
 - Starte Beispiel Applikation
- ```bash
- $ npm run start
- ``` 
+  ```bash
+  $ npm run start
+  ``` 
 - Prüfe ob die Applikation unter `http://localhost:3000/` läuft
 
 - Überprüfen ob Cypress startet mit
- ```bash 
- $ npm run cy:open
- ```
+  ```bash 
+  $ npm run cy:open
+  ```
 - Es sollte sich automatisch der Test Runner von Cypress.io in einem Browserfenster öffnen
 
 ## Aufgaben
