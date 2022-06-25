@@ -4,6 +4,17 @@
 // Lösche in der Applikation selber alle Items bevor du den Test startest.
 // IMPORTANT ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 
+/**
+ * https://on.cypress.io/type
+ * https://on.cypress.io/check
+ * https://on.cypress.io/should
+ * https://on.cypress.io/assertions
+ * 
+ * Tipp: Wie bestätigt ihr die Eingabe eines Todo Items ?
+ */
+
+
+
 it('loads', () => {
   // Applikation läuft unter Port 3000
   cy.visit('localhost:3000')
@@ -22,7 +33,7 @@ it('can mark an item as completed', () => {
   //    Finde das Input Element(get)
   //    Füge einen Text ein und bestätige diesen mit Enter(type)
   // Markiere das erste Item als erledigt
-  // Überprüfe ob das erste Item abgehakt wurde (class =  completed)
+  // Überprüfe ob das erste Item abgehakt wurde (className = completed)
   // Überprüfe, dass die anderen Items noch nicht abgehakt wurden
 })
 

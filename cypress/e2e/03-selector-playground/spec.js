@@ -1,8 +1,15 @@
 /// <reference types="cypress" />
-/* eslint-disable no-unused-vars */
+
+/**
+ * 
+ * https://on.cypress.io/click
+ * https://on.cypress.io/find
+ * https://on.cypress.io/assertions
+ * 
+ * Tipp: Nutze "force: true" in der Click Funktion
+ */
 
 beforeEach(() => {
-  // application should be running at port 3000
   // Applikation läuft unter Port 3000
   cy.visit('/')
 })
@@ -10,10 +17,15 @@ it('loads', () => {
   cy.contains('h1', 'todos')
 })
 
+it('add an item', () => {
+  /* ==== Generated with Cypress Studio ==== */
+  cy.get('.new-todo').clear();
+  cy.get('.new-todo').type('Test{enter}');
+  cy.get('.toggle').check();
+  /* ==== End Cypress Studio ==== */
+})
+
+
 it('can delete an item', () => {
-  // Füge zwei Items hinzu
-  // Lösche das erste Item
-  // Nutze {force: true}
-  // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
-  // Überprüfe ob das andere Item noch existiert
+  // Lösche Items mit Cypress Studio
 })

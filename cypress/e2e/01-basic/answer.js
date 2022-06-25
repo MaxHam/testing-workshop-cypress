@@ -5,7 +5,7 @@ it('loads', () => {
 
   // passing assertions
   // https://on.cypress.io/get
-  cy.get('.new-todo').get('footer')
+  cy.get('.new-todo')
 
   // https://on.cypress.io/get
   // use ("selector", "text") arguments to "cy.contains"

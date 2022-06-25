@@ -13,8 +13,8 @@ describe('reset data using cy.writeFile', () => {
       todos: []
     }
     const str = JSON.stringify(emptyTodos, null, 2) + '\n'
-    // file path is relative to the project's root folder
-    // where cypress.json is located
+    // Überschreibe die Datei "todomvc/data.json" mit einem stringified Todos Objekt
+    // Dateipfad ist relativ zum Projekt Rootverzeichnis in welchem cypress.json befindet
     cy.writeFile('todomvc/data.json', str, 'utf8')
     cy.visit('/')
   })

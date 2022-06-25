@@ -7,6 +7,17 @@ const addItem = (text) => {
   cy.get('.new-todo').type(`${text}{enter}`)
 }
 
+/**
+ * 
+ * https://on.cypress.io/writefile
+ * https://on.cypress.io/task
+ * https://on.cypress.io/plugins-guide
+ * https://on.cypress.io/fixture
+ * 
+ * Tipp: Die Daten der Todo App werden unter todomvc/data.json gespeichert
+ * Achte darauf wie die JSON aufgebaut ist
+ */
+
 describe('reset data using cy.writeFile', () => {
   beforeEach(() => {
     // Überschreibe die Datei "todomvc/data.json" mit einem stringified Todos Objekt
@@ -24,6 +35,7 @@ describe('reset data using cy.writeFile', () => {
 describe('reset data using a task', () => {
   beforeEach(() => {
     // Nutze cy.task um die Daten zurückzusetzen
+    // Tasks sind zu finden unter cypress/e2e/plugins/index.js
     cy.visit('/')
   })
 
