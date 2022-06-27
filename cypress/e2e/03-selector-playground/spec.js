@@ -24,3 +24,5 @@ it('can delete an item', () => {
   // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
   // Überprüfe ob das andere Item noch existiert
 })
+
+

@@ -8,6 +8,7 @@
  * https://on.cypress.io/type
  * https://on.cypress.io/check
  * https://on.cypress.io/should
+ * https://on.cypress.io/find
  * https://on.cypress.io/assertions
  * 
  * Tipp: Wie bestätigt ihr die Eingabe eines Todo Items ?
@@ -44,4 +45,15 @@ it('can add many items', () => {
     // Hier macht es Sinn die Aktion in eine Funktion auszulagern !
   }
   // Überprüfe die Anzahl an hinzugefügten Items
+})
+
+it('does not allow adding blank todos', () => {
+  // https://on.cypress.io/catalog-of-events#App-Events
+  cy.on('uncaught:exception', (e) => {
+    // Welcher Error wird ausgegeben wenn man versucht ein leeres Todo zu erstellen ?
+    // Prüfe ob e.message dem erwarteten Error Text gleicht.
+    // return false damit kein Error geworfen wird
+  })
+
+  // Füge ein leeres Todo Item hinzu
 })

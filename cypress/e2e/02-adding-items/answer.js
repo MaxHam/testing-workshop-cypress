@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 // IMPORTANT ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-// remember to manually delete all items before running the test
+// Lösche in der Applikation selber alle Items bevor du den Test startest.
 // IMPORTANT ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 
 beforeEach(() => {
@@ -47,4 +47,15 @@ it('can add many items', () => {
   }
   // Überprüfe die Anzahl an hinzugefügten Items
   cy.get('li.todo').should('have.length', 5)
+})
+
+
+it('does not allow adding blank todos', () => {
+  cy.on('uncaught:exception', (e) => {
+    // Welcher Error wird ausgegeben wenn man versucht ein leeres Todo zu erstellen ?
+    // Prüfe ob e.message dem erwarteten Error Text gleicht.
+    // return false damit kein Error geworfen wird
+    expect(e.message).to.include('Cannot add a blank todo')
+  })
+  addItem(' ')
 })
