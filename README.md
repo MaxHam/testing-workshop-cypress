@@ -46,9 +46,7 @@ Aufgaben sind zu finden in dem Verzeichnis `cypress/e2e`
 
 01. [01-basic](cypress/e2e/01-basic)
 02. [02-addind-items](cypress/e2e/02-adding-items)
-03. [03-selector-playground](cypress/e2e/03-selector-playground)
-04. [04-reset-state](cypress/e2e/04-reset-state)
-05. [05-xhr](cypress/e2e/05-xhr)
+03. [03-reset-state](cypress/e2e/03-reset-state)
 
  ### Material
 - [Workshop Repository](https://github.com/MaxHam/testing-workshop-cypress) (Wird spätestens am Tag des Workshops veröffentlicht)

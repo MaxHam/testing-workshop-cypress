@@ -9,6 +9,7 @@
  * https://on.cypress.io/check
  * https://on.cypress.io/should
  * https://on.cypress.io/find
+ * https://on.cypress.io/click
  * https://on.cypress.io/assertions
  * 
  * Tipp: Wie bestätigt ihr die Eingabe eines Todo Items ?
@@ -46,6 +47,16 @@ it('can add many items', () => {
   }
   // Überprüfe die Anzahl an hinzugefügten Items
 })
+
+
+it('can delete an item', () => {
+  // Füge zwei Items hinzu
+  // Lösche das erste Item
+  // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
+  // Überprüfe ob das andere Item noch existiert
+})
+
+
 
 it('does not allow adding blank todos', () => {
   // https://on.cypress.io/catalog-of-events#App-Events

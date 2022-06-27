@@ -49,6 +49,22 @@ it('can add many items', () => {
   cy.get('li.todo').should('have.length', 5)
 })
 
+it('can delete an item', () => {
+  // Füge zwei Items hinzu
+  addItem('simple')
+  addItem('hard')
+  // Lösche das erste Item
+  cy.contains('li.todo', 'simple')
+    .should('exist')
+    .find('.destroy')
+    // Nutze {force: true}
+    .click({ force: true })
+
+  // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
+  cy.contains('li.todo', 'simple').should('not.exist')
+  // Überprüfe ob das andere Item noch existiert
+  cy.contains('li.todo', 'hard').should('exist')
+})
 
 it('does not allow adding blank todos', () => {
   cy.on('uncaught:exception', (e) => {
