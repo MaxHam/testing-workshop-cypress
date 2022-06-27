@@ -17,15 +17,10 @@ it('loads', () => {
   cy.contains('h1', 'todos')
 })
 
-it('add an item', () => {
-  /* ==== Generated with Cypress Studio ==== */
-  cy.get('.new-todo').clear();
-  cy.get('.new-todo').type('Test{enter}');
-  cy.get('.toggle').check();
-  /* ==== End Cypress Studio ==== */
-})
-
 
 it('can delete an item', () => {
-  // Lösche Items mit Cypress Studio
+  // Füge zwei Items hinzu
+  // Lösche das erste Item mit Cypress Studio
+  // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
+  // Überprüfe ob das andere Item noch existiert
 })
