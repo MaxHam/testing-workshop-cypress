@@ -39,14 +39,7 @@ it('can mark an item as completed', () => {
   // Überprüfe, dass die anderen Items noch nicht abgehakt wurden
 })
 
-it('can add many items', () => {
-  const N = 5
-  for (let k = 0; k < N; k += 1) {
-    // Füge ein Item hinzu
-    // Hier macht es Sinn die Aktion in eine Funktion auszulagern !
-  }
-  // Überprüfe die Anzahl an hinzugefügten Items
-})
+
 
 
 it('can delete an item', () => {
@@ -67,4 +60,13 @@ it('does not allow adding blank todos', () => {
   })
 
   // Füge ein leeres Todo Item hinzu
+})
+
+it('can add many items', () => {
+  const N = 5
+  for (let k = 0; k < N; k += 1) {
+    // Füge ein Item hinzu
+    // Hier macht es Sinn die Aktion in eine Funktion auszulagern !
+  }
+  // Überprüfe die Anzahl an hinzugefügten Items
 })

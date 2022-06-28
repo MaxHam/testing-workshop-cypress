@@ -32,11 +32,40 @@ it('can mark an item as completed', () => {
   cy.contains('li.todo', 'hard').should('not.have.class', 'completed')
 })
 
+
+it('can delete an item', () => {
+  // Füge zwei Items hinzu
+  addItem('delete1')
+  addItem('delete2')
+  // Lösche das erste Item
+  cy.contains('li.todo', 'delete1')
+    .should('exist')
+    .find('.destroy')
+    // Nutze {force: true}
+    .click({ force: true })
+
+  // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
+  cy.contains('li.todo', 'delete1').should('not.exist')
+  // Überprüfe ob das andere Item noch existiert
+  cy.contains('li.todo', 'delete2').should('exist')
+})
+
+it('does not allow adding blank todos', () => {
+  cy.on('uncaught:exception', (e) => {
+    // Welcher Error wird ausgegeben wenn man versucht ein leeres Todo zu erstellen ?
+    // Prüfe ob e.message dem erwarteten Error Text gleicht.
+    // return false damit kein Error geworfen wird
+    expect(e.message).to.include('Cannot add a blank todo')
+    return false
+  })
+  addItem(' ')
+})
+
 /**
  * Fügt ein Todo Item hinzu
  * @param {string} text
  */
-const addItem = (text) => {
+ const addItem = (text) => {
   cy.get('.new-todo').type(`${text}{enter}`)
 }
 
@@ -47,31 +76,4 @@ it('can add many items', () => {
   }
   // Überprüfe die Anzahl an hinzugefügten Items
   cy.get('li.todo').should('have.length', 5)
-})
-
-it('can delete an item', () => {
-  // Füge zwei Items hinzu
-  addItem('simple')
-  addItem('hard')
-  // Lösche das erste Item
-  cy.contains('li.todo', 'simple')
-    .should('exist')
-    .find('.destroy')
-    // Nutze {force: true}
-    .click({ force: true })
-
-  // Überprüfe ob das Item wirklich aus der DOM verschwunden ist
-  cy.contains('li.todo', 'simple').should('not.exist')
-  // Überprüfe ob das andere Item noch existiert
-  cy.contains('li.todo', 'hard').should('exist')
-})
-
-it('does not allow adding blank todos', () => {
-  cy.on('uncaught:exception', (e) => {
-    // Welcher Error wird ausgegeben wenn man versucht ein leeres Todo zu erstellen ?
-    // Prüfe ob e.message dem erwarteten Error Text gleicht.
-    // return false damit kein Error geworfen wird
-    expect(e.message).to.include('Cannot add a blank todo')
-  })
-  addItem(' ')
 })
